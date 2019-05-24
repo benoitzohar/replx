@@ -1,0 +1,33 @@
+{
+  "name": "@benoitzohar/replx",
+  "version": "0.0.1",
+  "description": "REPL tool on steroids",
+  "scripts": {
+    "test": "jest"
+  },
+  "bin": {
+    "replx": "./bin/replx"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benoitzohar/replx.git"
+  },
+  "keywords": [
+    "repl",
+    "replx",
+    "cli",
+    "node",
+    "js",
+    "eval",
+    "read"
+  ],
+  "author": "Benoit Zohar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benoitzohar/replx/issues"
+  },
+  "homepage": "https://github.com/benoitzohar/replx",
+  "devDependencies": {
+    "jest": "24.8.0"
+  }
+}
