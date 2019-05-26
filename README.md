@@ -1,6 +1,6 @@
 # REPLx - A REPL CLI tool on steroids
 
-_"Read-Eval-Print-Loop-[times]"_ allows you to run a Javascript code with node and monitor the execution time for as executions as you want.
+_"Read-Eval-Print-Loop-[times]"_ allows you to run a Javascript code with node and monitor the execution time for as many executions as you want.
 
 ## Installation
 
@@ -16,16 +16,18 @@ Run an inline script:
 
 ```bash
 $ replx "console.log('hello')" 3
- > hello
- > hello
- > hello
+ hello
+ hello
+ hello
+ [Inline code] 1.312974ms
 ```
 
 or load a file:
 
 ```bash
 $ replx myfile.js
- > oh hello
+ oh hello
+ [myfile.js] 1.3433752ms
 ```
 
 You can watch for file changes and rerun replx everytime:
