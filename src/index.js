@@ -50,7 +50,10 @@ function runFile(file, loops) {
     if (actions.length) {
       const times = actions.map(action => {
         const spent = getTimeSpent(() => {
-          content[action]();
+          const res = content[action]();
+          if (loops === 1 && res) {
+            console.info(res);
+          }
         }, loops);
         return { file: action, spent };
       });
