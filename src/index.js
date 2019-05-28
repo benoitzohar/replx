@@ -6,7 +6,7 @@ const chalk = require("chalk");
 
 function displayTimeSpent(action, hrtime, diff = "", colorFn = null) {
   const message = `[${action}] ${hrtime[0] ? `${hrtime[0]}s ` : ""}${hrtime[1] /
-    1000000}ms`;
+    1000000}ms ${diff}`;
   if (colorFn) {
     console.info(colorFn(message));
   } else {
@@ -14,9 +14,36 @@ function displayTimeSpent(action, hrtime, diff = "", colorFn = null) {
   }
 }
 
+function getTimeInSecond(hrtime) {
+  return (hrtime[0] || 0) + hrtime[1] / 1000000000;
+}
+
 function displayTimes(times) {
-  times.forEach(time => {
-    displayTimeSpent(time.file, time.spent);
+  times = times.map(time => {
+    time.spentInSeconds = getTimeInSecond(time.spent);
+    return time;
+  });
+  times.sort((a, b) => {
+    if (a.spentInSeconds > b.spentInSeconds) return 1;
+    else if (a.spentInSeconds < b.spentInSeconds) return -1;
+    return 0;
+  });
+
+  const baseTime = times[0].spentInSeconds;
+
+  times.forEach((time, index) => {
+    const diff =
+      index > 0
+        ? `(${parseInt((time.spentInSeconds / baseTime) * 10, 10) /
+            10}x slower)`
+        : "";
+    const colorFn =
+      times.length > 1
+        ? index > 0
+          ? chalk.keyword("orange")
+          : chalk.green
+        : null;
+    displayTimeSpent(time.file, time.spent, diff, colorFn);
   });
 }
 
