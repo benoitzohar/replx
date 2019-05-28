@@ -91,4 +91,12 @@ const source = process.argv[2] || "";
 const loops = parseInt(process.argv[3], 10) || 1;
 const watchMode = process.argv.find(arg => arg === "--watch" || arg === "-w");
 
-run(source, loops, watchMode);
+if (source) {
+  run(source, loops, watchMode);
+} else {
+  console.error(
+    chalk.red(
+      `Please specifiy a source. Usage: replx 'console.log("hello");' or replx myfile.js`
+    )
+  );
+}
