@@ -1,6 +1,6 @@
 {
   "name": "@benoitzohar/replx",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "REPL tool on steroids",
   "engines": {
     "node": ">=8.0.0"
