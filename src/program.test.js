@@ -5,6 +5,7 @@ const {
   displayTimeSpent,
   displayTimes,
   getTimeSpent,
+  runEval,
   getFilePath
 } = require("./program");
 
@@ -45,6 +46,13 @@ test("getTimeSpent", () => {
   expect(hrtime.length).toBe(2);
   expect(hrtime[0]).toBe(0);
   expect(typeof hrtime[1]).toBe("number");
+});
+
+test("runEval", () => {
+  let stdout;
+  console.info = value => (stdout = value);
+  runEval("const A='hello'", 100);
+  expect(stdout).toMatch(/\[Inline code\] 0\.[0-9]{1,6}ms/);
 });
 
 test("getFilePath", () => {
