@@ -6,7 +6,8 @@
     "node": ">=8.0.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "bin": {
     "replx": "./bin/replx"
