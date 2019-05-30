@@ -1,9 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-  - "8"
   - "10"
-  - "12"
 branches:
   only:
     - master
@@ -11,8 +9,12 @@ cache:
   directories:
     - node_modules
 before_install:
+  - sudo apt-get install jq
+  - curl $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r '.assets | map({content_type, browser_download_url} | select(.content_type | contains("application/x-java-archive"))) | .[0].browser_download_url') -o codacy-coverage-reporter-assembly.jar
   - npm update
 install:
   - npm install
 script:
   - npm test
+after_success:
+  - java -jar ~/codacy-coverage-reporter-assembly.jar report -l Java -r build/reports/jacoco/test/jacocoTestReport.xml
