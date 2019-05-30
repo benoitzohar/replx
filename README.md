@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@benoitzohar/replx.svg)](https://www.npmjs.com/package/@benoitzohar/replx)
 [![Build Status](https://travis-ci.org/benoitzohar/replx.svg?branch=master)](https://travis-ci.org/benoitzohar/replx)
+[![NPM dependencies](https://david-dm.org/benoitzohar/replx.svg)](https://david-dm.org/benoitzohar/replx)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/25ca409490cd4caeb25a80fb85cab28f)](https://www.codacy.com/app/benoit.zohar/replx?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=benoitzohar/replx&amp;utm_campaign=Badge_Grade)
 
 
