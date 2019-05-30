@@ -4,14 +4,13 @@
 [![Build Status](https://travis-ci.org/benoitzohar/replx.svg?branch=master)](https://travis-ci.org/benoitzohar/replx)
 [![NPM dependencies](https://david-dm.org/benoitzohar/replx.svg)](https://david-dm.org/benoitzohar/replx)
 
-
-_"Read-Eval-Print-Loop-[times]"_ allows you to run a Javascript code with node and monitor the execution time for as many executions as you want.
+_"Read-Eval-Print-Loop-**times**"_ allows you to run a Javascript code with node and monitor the execution time for as many executions as you want.
 
 ## Installation
 
 You may want to install _replx_ globally to be able to use it wherever you want:
 
-```
+```bash
 npm i -g @benoitzohar/replx
 ```
 
@@ -111,7 +110,7 @@ $ replx -k myfile.js
 
 This command will:
 
-- create the file `myfile.js` with 2 exports functions:
+  - create the file `myfile.js` with 2 exports functions:
 
 ```js
 module.exports.A = () => {
@@ -123,10 +122,10 @@ module.exports.B = () => {
 };
 ```
 
-- open it in your default IDE (based on the file extension)
-- run the code 1000 times for each function
-- compare the time between the two functions
-- watch for file change and re-run, etc.
+  - open it in your default IDE (based on the file extension)
+  - run the code 1000 times for each function
+  - compare the time between the two functions
+  - watch for file change and re-run, etc.
 
 ```bash
 $ replx -k -w myfile.js 1000
