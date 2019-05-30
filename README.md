@@ -2,7 +2,6 @@
 
 [![npm version](https://img.shields.io/npm/v/@benoitzohar/replx.svg)](https://www.npmjs.com/package/@benoitzohar/replx)
 [![Build Status](https://travis-ci.org/benoitzohar/replx.svg?branch=master)](https://travis-ci.org/benoitzohar/replx)
-[![NPM dependencies](https://david-dm.org/benoitzohar/replx.svg)](https://david-dm.org/benoitzohar/replx)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/25ca409490cd4caeb25a80fb85cab28f)](https://www.codacy.com/app/benoit.zohar/replx?utm_source=github.com&utm_medium=referral&utm_content=benoitzohar/replx&utm_campaign=Badge_Coverage)
 
 _"Read-Eval-Print-Loop-**times**"_ allows you to run a Javascript code with node and monitor the execution time for as many executions as you want.
