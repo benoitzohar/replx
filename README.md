@@ -1,4 +1,4 @@
-# REPLx - A REPL CLI tool on steroids
+# REPLx - A REPL CLI tool on steroids [![Build Status](https://travis-ci.org/benoitzohar/replx.svg?branch=master)](https://travis-ci.org/benoitzohar/replx)
 
 _"Read-Eval-Print-Loop-[times]"_ allows you to run a Javascript code with node and monitor the execution time for as many executions as you want.
 
