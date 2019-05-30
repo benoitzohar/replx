@@ -5,18 +5,18 @@ const path = require("path");
 const chalk = require("chalk");
 const { exec } = require("child_process");
 
-function displayTimeSpent(action, hrtime, diff = "", colorFn = null) {
+function getTimeInSecond(hrtime) {
+  return (hrtime[0] || 0) + hrtime[1] / 1000000000;
+}
+
+function displayTimeSpent(action, hrtime, diff = null, colorFn = null) {
   const message = `[${action}] ${hrtime[0] ? `${hrtime[0]}s ` : ""}${hrtime[1] /
-    1000000}ms ${diff}`;
+    1000000}ms${diff ? ` (${diff}x slower)` : ""}`;
   if (colorFn) {
     console.info(colorFn(message));
   } else {
     console.info(message);
   }
-}
-
-function getTimeInSecond(hrtime) {
-  return (hrtime[0] || 0) + hrtime[1] / 1000000000;
 }
 
 function displayTimes(times) {
@@ -35,9 +35,8 @@ function displayTimes(times) {
   times.forEach((time, index) => {
     const diff =
       index > 0
-        ? `(${parseInt((time.spentInSeconds / baseTime) * 10, 10) /
-            10}x slower)`
-        : "";
+        ? parseInt((time.spentInSeconds / baseTime) * 10, 10) / 10
+        : null;
     const colorFn =
       times.length > 1
         ? index > 0
