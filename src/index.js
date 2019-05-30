@@ -3,6 +3,10 @@
 const fs = require("fs");
 const path = require("path");
 const chalk = require("chalk");
+const commander = require("commander");
+const { exec } = require("child_process");
+
+const package = require("../package.json");
 
 function displayTimeSpent(action, hrtime, diff = "", colorFn = null) {
   const message = `[${action}] ${hrtime[0] ? `${hrtime[0]}s ` : ""}${hrtime[1] /
@@ -98,8 +102,30 @@ function runFile(file, loops) {
   }
 }
 
+function getFilePath(source) {
+  return path.resolve(process.cwd(), source);
+}
+
+function createFile(source, comparison) {
+  const file = getFilePath(source);
+  if (!fs.existsSync(file)) {
+    const content = comparison
+      ? 'module.exports.A = () => {\n  return "A";\n};\n\nmodule.exports.B = () => {\n  return "B";\n};\n'
+      : "";
+    try {
+      fs.writeFileSync(file, content);
+      exec(`open ${file}`);
+    } catch (err) {
+      console.error(chalk.red(`Could not create a file in ${file}.`));
+      throw err;
+    }
+  } else {
+    throw new Error(`The file ${file} already exists.`);
+  }
+}
+
 function run(source, loops, watchMode) {
-  const file = process.cwd() + "/" + source;
+  const file = getFilePath(source);
   if (fs.existsSync(file)) {
     runFile(file, loops);
     if (watchMode) {
@@ -112,18 +138,25 @@ function run(source, loops, watchMode) {
     runEval(source, loops);
   }
 }
-module.exports = run;
 
-const source = process.argv[2] || "";
-const loops = parseInt(process.argv[3], 10) || 1;
-const watchMode = process.argv.find(arg => arg === "--watch" || arg === "-w");
+commander
+  .version(package.version)
+  .arguments("<source> [times]")
+  .option("-w, --watch", "Watch file for change")
+  .option("-c, --create", "Create an empty file and open it")
+  .option(
+    "-k, --comparison",
+    "Create a new file with 2 exported functions. Use it to compare speed."
+  )
+  .action(function(source, times, cmd) {
+    if (cmd.create || cmd.comparison) {
+      createFile(source, cmd.comparison);
+    }
+    const loops = parseInt(times, 10) || 1;
+    run(source, loops, cmd.watch);
+  })
+  .parse(process.argv);
 
-if (source) {
-  run(source, loops, watchMode);
-} else {
-  console.error(
-    chalk.red(
-      `Please specifiy a source. Usage: replx 'console.log("hello");' or replx myfile.js`
-    )
-  );
+if (commander.args.length === 0) {
+  commander.help();
 }
