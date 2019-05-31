@@ -108,6 +108,16 @@ $ replx -k myfile.js
 
 ## Example
 
+
+```bash
+$ replx -k -w myfile.js 1000
+[B] 0.08004ms
+[A] 0.098599ms (1x slower)
+---
+[A] 0.086088ms
+[B] 0.166884ms (2x slower)
+```
+
 This command will:
 
   - create the file `myfile.js` with 2 exports functions:
@@ -126,15 +136,6 @@ module.exports.B = () => {
   - run the code 1000 times for each function
   - compare the time between the two functions
   - watch for file change and re-run, etc.
-
-```bash
-$ replx -k -w myfile.js 1000
-[B] 0.08004ms
-[A] 0.098599ms (1x slower)
----
-[A] 0.086088ms
-[B] 0.166884ms (2x slower)
-```
 
 ## Help
 
