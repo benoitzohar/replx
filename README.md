@@ -120,7 +120,7 @@ $ replx -k -w myfile.js 1000
 
 This command will:
 
-  - create the file `myfile.js` with 2 exports functions:
+- create the file `myfile.js` with 2 exports functions:
 
 ```js
 module.exports.A = () => {
@@ -132,10 +132,10 @@ module.exports.B = () => {
 };
 ```
 
-  - open it in your default IDE (based on the file extension)
-  - run the code 1000 times for each function
-  - compare the time between the two functions
-  - watch for file change and re-run, etc.
+- open it in your default IDE (based on the file extension)
+- run the code 1000 times for each function
+- compare the time between the two functions
+- watch for file change and re-run, etc.
 
 ## Help
 
